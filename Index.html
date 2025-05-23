@@ -1,0 +1,21 @@
+import React from 'react'; import { Button } from "@/components/ui/button"; import { Card, CardContent } from "@/components/ui/card"; import { motion } from "framer-motion"; import { Sparkles } from "lucide-react";
+
+export default function MonetagMiniApp() { const handleRewardedAd = () => { show_9356414().then(() => { alert("You have seen an ad and earned a reward!"); }); };
+
+const handleInterstitialAd = () => { show_9356414({ type: 'inApp', inAppSettings: { frequency: 2, capping: 0.1, interval: 30, timeout: 5, everyPage: false } }); };
+
+return ( <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4"> <Card className="w-full max-w-md shadow-xl rounded-2xl"> <CardContent className="p-6 text-center"> <motion.img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Monetag_Logo.png" alt="Monetag Logo" className="w-32 h-auto mx-auto mb-6" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} /> <h1 className="text-xl font-bold mb-4 text-gray-800">Welcome to Monetag Mini App</h1> <p className="mb-6 text-gray-600">Choose an action below to earn or display ads.</p>
+
+<div className="space-y-4">
+        <Button onClick={handleInterstitialAd} className="w-full text-white bg-black hover:bg-gray-900">
+          <Sparkles className="mr-2" /> Show Interstitial Ad
+        </Button>
+        <Button onClick={handleRewardedAd} className="w-full text-white bg-black hover:bg-gray-900">
+          <Sparkles className="mr-2" /> Show Rewarded Ad
+        </Button>
+      </div>
+    </CardContent>
+  </Card>
+</div>
+
+); }
